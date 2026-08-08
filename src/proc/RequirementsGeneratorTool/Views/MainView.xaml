@@ -5,8 +5,408 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RequirementsGeneratorTool"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
-    <Grid>
+        Title="MainView" Height="900" Width="1500"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
+    <Grid Background="LightBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+
+                <TextBlock Text="プロジェクトフォルダパス"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <TextBox Margin="5 , 10" Padding="5" Name="ProjectFolderPathTextBox" IsReadOnly="True"/>
+
+            </Grid>
+
+            <Grid Grid.Column="2">
+
+                <Button Content="フォルダ選択" Width="80" Height="30" Click="FolderSelectBtn_Click"/>
+
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- 要求名(英語) -->
+                    <Grid Grid.Row="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <TextBlock Text="要求名(英語)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <TextBox Text="login"
+                                     Name="RequirementNameEnTextBox"
+                                     Width="200"
+                                     Height="30"
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Left"
+                                     HorizontalAlignment="Left"
+                                     Margin="5 , 0 , 0 , 0"
+                                     Padding="5"/>
+
+                        </Grid>
+
+                    </Grid>
+                    <!-- 要求名(日本語) -->
+                    <Grid Grid.Row="1" Margin="0 , 10 , 0 , 0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <TextBlock Text="要求名(日本語)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <TextBox Text="ログイン"
+                                     Name="RequirementNameJaTextBox"
+                                     Width="200"
+                                     Height="30"
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Left"
+                                     HorizontalAlignment="Left"
+                                     Margin="5 , 0 , 0 , 0"
+                                     Padding="5"/>
+
+                        </Grid>
+
+                    </Grid>
+                    <!-- 機能概要 -->
+                    <Grid Grid.Row="2" Margin="0 , 10 , 0 , 0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <TextBlock Text="機能概要"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="5 , 0" />
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <RichTextBox Name="FunctionOverviewRichTextBox"
+                                         Width="600"
+                                         Height="150"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Left"
+                                         VerticalScrollBarVisibility="Auto"
+                                         HorizontalAlignment="Left"
+                                         Padding="5"
+                                         Margin="5 , 0">
+
+                                <RichTextBox.Resources>
+
+                                    <Style TargetType="{x:Type Paragraph}">
+
+                                        <Setter Property="Margin" Value="0"/>
+
+                                    </Style>
+
+                                </RichTextBox.Resources>
+
+                            </RichTextBox>
+
+                        </Grid>
+
+                    </Grid>
+                    <!-- 入力 -->
+                    <Grid Grid.Row="3" Margin="0 , 10 , 50 , 0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <TextBlock Text="入力"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="5 , 0" />
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <DataGrid x:Name="InputDataGrid"
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="True"
+                                      AddingNewItem="InputDataGrid_AddingNewItem"
+                                      Margin="5 , 0 , 0 , 0">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridCheckBoxColumn Header="必須" Binding="{Binding IsRequired}" Width="60"/>
+                                    <DataGridTextColumn Header="項目" Binding="{Binding ItemName}" Width="200"/>
+                                    <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+
+                        </Grid>
+
+                    </Grid>
+                    <!-- 処理 -->
+                    <Grid Grid.Row="4" Margin="0 , 10 , 50 , 0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <TextBlock Text="処理"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="5 , 0" />
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <DataGrid x:Name="ProcessDataGrid"
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="True"
+                                      AddingNewItem="ProcessDataGrid_AddingNewItem"
+                                      Margin="5 , 0 , 0 , 0">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+
+                        </Grid>
+
+                    </Grid>
+                    <!-- 正常系 -->
+                    <Grid Grid.Row="5" Margin="0 , 10 , 50 , 0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <TextBlock Text="正常系"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="5 , 0" />
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <DataGrid x:Name="NormalDataGrid"
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="True"
+                                      AddingNewItem="NomalDataGrid_AddingNewItem"
+                                      Margin="5 , 0 , 0 , 0">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+
+                        </Grid>
+
+                    </Grid>
+                    <!-- 異常系 -->
+                    <Grid Grid.Row="6" Margin="0 , 10 , 50 , 0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <TextBlock Text="異常系"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="5 , 0" />
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <DataGrid x:Name="AbNormalDataGrid"
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="True"
+                                      AddingNewItem="AbNomalDataGrid_AddingNewItem"
+                                      Margin="5 , 0 , 0 , 0">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+
+                        </Grid>
+
+                    </Grid>
+                    <!-- 制約 -->
+                    <Grid Grid.Row="7" Margin="0 , 10 , 50 , 0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <TextBlock Text="制約"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="5 , 0" />
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <DataGrid x:Name="ConstraintsDataGrid"
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="True"
+                                      AddingNewItem="ConstraintsDataGrid_AddingNewItem"
+                                      Margin="5 , 0 , 0 , 0">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+
+                        </Grid>
+
+                    </Grid>
+                    <!-- 受入条件 -->
+                    <Grid Grid.Row="8" Margin="0 , 10 , 50 , 0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+
+                            <TextBlock Text="受入条件"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="5 , 0" />
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+
+                            <DataGrid x:Name="AcceptanceDataGrid"
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="True"
+                                      AddingNewItem="AcceptanceDataGrid_AddingNewItem"
+                                      Margin="5 , 0 , 0 , 0">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+
+            </ScrollViewer>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <Button Content="入力クリア"
+                    Width="100"
+                    Height="30" Margin="0 , 0 , 5 , 0" Click="InputClearBtn_Click"/>
+
+                <Button Content="出力"
+                    Width="100"
+                    Height="30"
+                    Margin="5 , 0 , 0 , 0"
+                    Click="OutputBtn_Click"/>
+
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Window>
