@@ -98,6 +98,8 @@ namespace RequirementsGeneratorTool.Views
                     MessageBox.Show ( this , "データベースのオープンに失敗しました。" , "データベースエラー" , MessageBoxButton.OK , MessageBoxImage.Error );
                     return;
                 }
+
+                _isDbInitialized = true;
             }
         }
 
