@@ -82,8 +82,7 @@
 
                         <Grid Grid.Column="1">
 
-                            <TextBox Text="login"
-                                     Name="RequirementNameEnTextBox"
+                            <TextBox Name="RequirementNameEnTextBox"
                                      Width="200"
                                      Height="30"
                                      VerticalContentAlignment="Center"
@@ -113,8 +112,7 @@
 
                         <Grid Grid.Column="1">
 
-                            <TextBox Text="ログイン"
-                                     Name="RequirementNameJaTextBox"
+                            <TextBox Name="RequirementNameJaTextBox"
                                      Width="200"
                                      Height="30"
                                      VerticalContentAlignment="Center"
@@ -196,7 +194,7 @@
                                       Margin="5 , 0 , 0 , 0">
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60" IsReadOnly="True"/>
                                     <DataGridCheckBoxColumn Header="必須" Binding="{Binding IsRequired}" Width="60"/>
                                     <DataGridTextColumn Header="項目" Binding="{Binding ItemName}" Width="200"/>
                                     <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
@@ -233,7 +231,7 @@
                                       Margin="5 , 0 , 0 , 0">
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
                                 </DataGrid.Columns>
 
@@ -268,7 +266,7 @@
                                       Margin="5 , 0 , 0 , 0">
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
                                 </DataGrid.Columns>
 
@@ -303,7 +301,7 @@
                                       Margin="5 , 0 , 0 , 0">
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
                                 </DataGrid.Columns>
 
@@ -338,7 +336,7 @@
                                       Margin="5 , 0 , 0 , 0">
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
                                 </DataGrid.Columns>
 
@@ -373,7 +371,7 @@
                                       Margin="5 , 0 , 0 , 0">
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60"/>
+                                    <DataGridTextColumn Header="No." Binding="{Binding No}" Width="60" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="説明" Binding="{Binding Description}" Width="*"/>
                                 </DataGrid.Columns>
 
@@ -395,9 +393,17 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
 
+                <Button Content="サンプル"
+                        Width="100"
+                        Height="30"
+                        Margin="0 , 0 , 5 , 0"
+                        Click="SampleBtn_Click"/>
+
                 <Button Content="入力クリア"
-                    Width="100"
-                    Height="30" Margin="0 , 0 , 5 , 0" Click="InputClearBtn_Click"/>
+                        Width="100"
+                        Height="30"
+                        Margin="5 , 0 , 5 , 0"
+                        Click="InputClearBtn_Click"/>
 
                 <Button Content="出力"
                     Width="100"

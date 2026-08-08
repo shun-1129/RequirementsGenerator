@@ -36,65 +36,18 @@ namespace RequirementsGeneratorTool.Views
             _outputPath = string.Empty;
             InitializeComponent ();
 
-            FunctionOverviewRichTextBox.AppendText ( "テスト用" );
-            FunctionOverviewRichTextBox.AppendText ( Environment.NewLine );
-            FunctionOverviewRichTextBox.AppendText ( "サンプル" );
-            FunctionOverviewRichTextBox.AppendText ( Environment.NewLine );
-            FunctionOverviewRichTextBox.AppendText ( "ユーザーを認証し、システムへのアクセスを許可する機能" );
+            InputInfoItems = new ObservableCollection<InputInfoItem> ();
+            ProcessInfoItems = new ObservableCollection<DataGridInfoItem> ();
+            NormalInfoItems = new ObservableCollection<DataGridInfoItem> ();
+            AbNormalInfoItems = new ObservableCollection<DataGridInfoItem> ();
+            ConstraintsInfoItems = new ObservableCollection<DataGridInfoItem> ();
+            AcceptanceInfoItems = new ObservableCollection<DataGridInfoItem> ();
 
-            InputInfoItems = new ObservableCollection<InputInfoItem> ()
-            {
-                new InputInfoItem ()
-                {
-                    No = 1,
-                    IsRequired = true,
-                    ItemName = "ユーザーID",
-                    Description = "ログインするユーザーのID"
-                } ,
-                new InputInfoItem ()
-                {
-                    No = 2,
-                    IsRequired = true,
-                    ItemName = "パスワード",
-                    Description = "ユーザーのパスワード"
-                }
-            };
             InputDataGrid.ItemsSource = InputInfoItems;
-
-            ProcessInfoItems = new ObservableCollection<DataGridInfoItem> ()
-            {
-                new DataGridInfoItem () { No = 1, Description = "ユーザーIDの入力値を確認する。" } ,
-                new DataGridInfoItem () { No = 2, Description = "パスワードの入力値を確認する。" } ,
-                new DataGridInfoItem () { No = 3, Description = "ユーザー情報を検索する。" } ,
-                new DataGridInfoItem () { No = 4, Description = "パスワードを検証する。" } ,
-                new DataGridInfoItem () { No = 5, Description = "認証結果に応じて画面を遷移する。" }
-            };
             ProcessDataGrid.ItemsSource = ProcessInfoItems;
-
-            NormalInfoItems = new ObservableCollection<DataGridInfoItem> ()
-            {
-                new DataGridInfoItem () { No = 1, Description = "認証に成功した場合、メイン画面を表示する。" }
-            };
             NormalDataGrid.ItemsSource = NormalInfoItems;
-
-            AbNormalInfoItems = new ObservableCollection<DataGridInfoItem> ()
-            {
-                new DataGridInfoItem () { No = 1, Description = "ユーザーIDが存在しない場合、エラーを表示する。" } ,
-                new DataGridInfoItem () { No = 2, Description = "パスワードが一致しない場合、エラーを表示する。" }
-            };
             AbNormalDataGrid.ItemsSource = AbNormalInfoItems;
-
-            ConstraintsInfoItems = new ObservableCollection<DataGridInfoItem> ()
-            {
-                new DataGridInfoItem () { No = 1, Description = "パスワードをログへ出力してはならない。" }
-            };
             ConstraintsDataGrid.ItemsSource = ConstraintsInfoItems;
-
-            AcceptanceInfoItems = new ObservableCollection<DataGridInfoItem> ()
-            {
-                new DataGridInfoItem () { No = 1, Description = "正しい認証情報でログインできること。" } ,
-                new DataGridInfoItem () { No = 2, Description = "誤った認証情報ではログインできないこと。" }
-            };
             AcceptanceDataGrid.ItemsSource = AcceptanceInfoItems;
         }
 
@@ -390,6 +343,78 @@ namespace RequirementsGeneratorTool.Views
                 No = nextNo,
                 Description = string.Empty
             };
+        }
+
+        private void SampleBtn_Click ( object sender , RoutedEventArgs e )
+        {
+            InputClearBtn_Click ( sender , e );
+
+            RequirementNameEnTextBox.Text = "login";
+            RequirementNameJaTextBox.Text = "ログイン";
+
+            FunctionOverviewRichTextBox.AppendText ( "テスト用" );
+            FunctionOverviewRichTextBox.AppendText ( Environment.NewLine );
+            FunctionOverviewRichTextBox.AppendText ( "サンプル" );
+            FunctionOverviewRichTextBox.AppendText ( Environment.NewLine );
+            FunctionOverviewRichTextBox.AppendText ( "ユーザーを認証し、システムへのアクセスを許可する機能" );
+
+            InputInfoItems = new ObservableCollection<InputInfoItem> ()
+            {
+                new InputInfoItem ()
+                {
+                    No = 1,
+                    IsRequired = true,
+                    ItemName = "ユーザーID",
+                    Description = "ログインするユーザーのID"
+                } ,
+                new InputInfoItem ()
+                {
+                    No = 2,
+                    IsRequired = true,
+                    ItemName = "パスワード",
+                    Description = "ユーザーのパスワード"
+                }
+            };
+            ProcessInfoItems = new ObservableCollection<DataGridInfoItem> ()
+            {
+                new DataGridInfoItem () { No = 1, Description = "ユーザーIDの入力値を確認する。" } ,
+                new DataGridInfoItem () { No = 2, Description = "パスワードの入力値を確認する。" } ,
+                new DataGridInfoItem () { No = 3, Description = "ユーザー情報を検索する。" } ,
+                new DataGridInfoItem () { No = 4, Description = "パスワードを検証する。" } ,
+                new DataGridInfoItem () { No = 5, Description = "認証結果に応じて画面を遷移する。" }
+            };
+            NormalInfoItems = new ObservableCollection<DataGridInfoItem> ()
+            {
+                new DataGridInfoItem () { No = 1, Description = "認証に成功した場合、メイン画面を表示する。" }
+            };
+            AbNormalInfoItems = new ObservableCollection<DataGridInfoItem> ()
+            {
+                new DataGridInfoItem () { No = 1, Description = "ユーザーIDが存在しない場合、エラーを表示する。" } ,
+                new DataGridInfoItem () { No = 2, Description = "パスワードが一致しない場合、エラーを表示する。" }
+            };
+            ConstraintsInfoItems = new ObservableCollection<DataGridInfoItem> ()
+            {
+                new DataGridInfoItem () { No = 1, Description = "パスワードをログへ出力してはならない。" }
+            };
+            AcceptanceInfoItems = new ObservableCollection<DataGridInfoItem> ()
+            {
+                new DataGridInfoItem () { No = 1, Description = "正しい認証情報でログインできること。" } ,
+                new DataGridInfoItem () { No = 2, Description = "誤った認証情報ではログインできないこと。" }
+            };
+
+            InputDataGrid.ItemsSource = null;
+            ProcessDataGrid.ItemsSource = null;
+            NormalDataGrid.ItemsSource = null;
+            AbNormalDataGrid.ItemsSource = null;
+            ConstraintsDataGrid.ItemsSource = null;
+            AcceptanceDataGrid.ItemsSource = null;
+
+            InputDataGrid.ItemsSource = InputInfoItems;
+            ProcessDataGrid.ItemsSource = ProcessInfoItems;
+            NormalDataGrid.ItemsSource = NormalInfoItems;
+            AbNormalDataGrid.ItemsSource = AbNormalInfoItems;
+            ConstraintsDataGrid.ItemsSource = ConstraintsInfoItems;
+            AcceptanceDataGrid.ItemsSource = AcceptanceInfoItems;
         }
     }
 }
