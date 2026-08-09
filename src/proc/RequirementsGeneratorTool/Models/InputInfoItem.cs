@@ -1,5 +1,8 @@
-﻿namespace RequirementsGeneratorTool.ViewModels
+﻿namespace RequirementsGeneratorTool.Models
 {
+    /// <summary>
+    /// 入力情報の項目を表すクラス
+    /// </summary>
     public class InputInfoItem
     {
         /// <summary>

@@ -6,6 +6,18 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    
+    <!-- 単一ファイル化の設定 -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    
+    <!-- ネイティブDLLも1つのEXEに埋め込んで自動展開させる設定 -->
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+
+    <!-- 設定ファイル（.config）の生成を抑制する -->
+    <GenerateAppConfig>false</GenerateAppConfig>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
