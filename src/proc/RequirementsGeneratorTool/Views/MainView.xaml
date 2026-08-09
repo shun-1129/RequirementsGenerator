@@ -4,11 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RequirementsGeneratorTool"
+        xmlns:vm="clr-namespace:RequirementsGeneratorTool.ViewModels"
         mc:Ignorable="d"
         Title="MainView" Height="900" Width="1500"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
         Closing="Window_Closing">
+
+    
     <Grid Background="LightBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -34,7 +37,7 @@
 
             <Grid Grid.Column="1">
 
-                <TextBox Margin="5 , 10" Padding="5" Name="ProjectFolderPathTextBox" IsReadOnly="True"/>
+                <TextBox Margin="5 , 10" Padding="5" Name="ProjectFolderPathTextBox" IsReadOnly="True" Text="{Binding ProjectFolderPath, Mode=OneWay}"/>
 
             </Grid>
 
@@ -89,7 +92,8 @@
                                      HorizontalContentAlignment="Left"
                                      HorizontalAlignment="Left"
                                      Margin="5 , 0 , 0 , 0"
-                                     Padding="5"/>
+                                     Padding="5"
+                                     Text="{Binding RequirementNameEn, UpdateSourceTrigger=PropertyChanged}"/>
 
                         </Grid>
 
@@ -119,7 +123,8 @@
                                      HorizontalContentAlignment="Left"
                                      HorizontalAlignment="Left"
                                      Margin="5 , 0 , 0 , 0"
-                                     Padding="5"/>
+                                     Padding="5"
+                                     Text="{Binding RequirementNameJa, UpdateSourceTrigger=PropertyChanged}"/>
 
                         </Grid>
 
